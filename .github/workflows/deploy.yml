@@ -29,7 +29,7 @@ jobs:
       - name: Unpack the add-in and point its manifest at this site
         run: |
           mkdir site
-          unzip -q finexcel-ps-e-site.zip -d site
+          unzip -q "$(find . -name finexcel-ps-e-site.zip | head -1)" -d site
           BASE="${{ steps.pages.outputs.base_url }}"
           ORIGIN="${{ steps.pages.outputs.origin }}"
           sed -i "s#https://pages-base-url.invalid/#${BASE}/#g; s#https://pages-base-url.invalid#${ORIGIN}#g" site/manifest.xml
